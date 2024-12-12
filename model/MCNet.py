@@ -12,7 +12,6 @@ from torch.nn import TransformerEncoderLayer
 from models import register
 NEG_INF = -1000000
 
-###############------RCAB(RCAN的基础模块)------###############
 ## padding=(kernel_size//2)保证Conv输入输出维度一致（在FusionBlock以及CNN_branch中使用）
 def default_conv(in_channels, out_channels, kernel_size, bias=True):
     return nn.Conv2d(
@@ -99,7 +98,7 @@ class CNN_RG(nn.Module):
         return res
 ###############------RCAB(RCAN的基础模块)------###############
 
-###############------Mamba-CNN融合模块（from ACT）------###############
+###############------Mamba-CNN融合模块 ------###############
 class FusionBlock(nn.Module):
     def __init__(self, conv, n_feat, kernel_size, bias=False, act=nn.ReLU(True)):
         super(FusionBlock, self).__init__()
@@ -114,7 +113,7 @@ class FusionBlock(nn.Module):
         res = self.body(x)
         res += x
         return res
-###############------Mamba-CNN融合模块（from ACT）------###############
+###############------Mamba-CNN融合模块 ------###############
 
 
 ###############------Mamba-CNN注意力融合模块------###############
@@ -299,7 +298,7 @@ class DynamicPosBias(nn.Module):
 
 
 
-##########################------MambaIR核心(包含2D-SSM的VSSM)------#########################
+
 class SS2D(nn.Module):
     def __init__(
             self,
@@ -475,11 +474,10 @@ class SS2D(nn.Module):
         if self.dropout is not None:
             out = self.dropout(out)
         return out
-##########################------MambaIR核心(包含2D-SSM的VSSM)------#########################
 
 
 
-#########################------VSSBlock(包含VSSM的RSSB)------#########################
+
 class VSSBlock(nn.Module):
     def __init__(
             self,
@@ -509,10 +507,10 @@ class VSSBlock(nn.Module):
         x = x*self.skip_scale2 + self.conv_blk(self.ln_2(x).permute(0, 3, 1, 2).contiguous()).permute(0, 2, 3, 1).contiguous()
         x = x.view(B, -1, C).contiguous()
         return x
-#########################------VSSBlock(包含VSSM的RSSB)------#########################
 
 
-#########################------包装VSSBlock(包装RSSB)------#########################
+
+
 class BasicLayer(nn.Module):
     def __init__(self,
                  dim,
@@ -567,10 +565,10 @@ class BasicLayer(nn.Module):
         if self.downsample is not None:
             flops += self.downsample.flops()
         return flops
-#########################------包装VSSBlock(包装RSSB)------#########################
 
 
-##############################------MambaIR基础模块(RSSG)------#############################
+
+
 class Mamba_RG(nn.Module):
     def __init__(self,
                  dim,
@@ -625,12 +623,12 @@ class Mamba_RG(nn.Module):
         flops += self.patch_embed.flops()
         flops += self.patch_unembed.flops()
         return flops
-##############################------MambaIR基础模块(RSSG)------#############################
 
 
 
-##################################------MambaIR------#################################
-class Mamba_CNN_1(nn.Module):
+
+
+class MCNet(nn.Module):
     def __init__(self,
                  conv = default_conv, #TODO 默认卷积
                  img_size=48,
@@ -652,7 +650,7 @@ class Mamba_CNN_1(nn.Module):
                  upsampler='none', # 默认不使用上采样
                  resi_connection='1conv',
                  **kwargs):
-        super(Mamba_CNN_1, self).__init__()
+        super(MCNet, self).__init__()
         num_in_ch = in_chans
         num_out_ch = in_chans
 
@@ -661,14 +659,10 @@ class Mamba_CNN_1(nn.Module):
  
         self.img_size = img_size # 用于定义norm
 
-        ###########################TODO mam_dim与cnn_dim可以不同 TODO#########################
-        #TODO 由于CNN_RG和Mamba_RG都不改变特征维度，导致浅层特征提取模块的输出维度shallow_out_dim=mam_dim=cnn_dim相等
-        #TODO Mamba_CNN特征提取主干的输出特征维度是fus_dim=mam_dim+cnn_dim
-        #TODO 最后一层Conv需要与浅层特征进行残差连接则lasconvt_out_dim=shallow_out_dim
         self.mam_dim = mam_dim # 64
         self.cnn_dim = cnn_dim # 64
         self.fus_dim = fus_dim = mam_dim + cnn_dim # 128
-        #####################################################################################
+
 
         #TODO 定义伪上采样层的输出维度
         num_feat = 64  
@@ -918,7 +912,7 @@ class Mamba_CNN_1(nn.Module):
         flops += h * w * 3 * self.embed_dim * self.embed_dim
         flops += self.upsample.flops()
         return flops
-##################################------MambaIR------#################################    
+
 
 
 
