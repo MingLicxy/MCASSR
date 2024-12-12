@@ -1,7 +1,3 @@
-"""
-Modified from https://github.com/caojiezhang/CiaoSR
-"""
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -9,10 +5,8 @@ import torch.nn.functional as F
 import models
 from models import register
 from utils import make_coord
-from models.arch_ciaosr.arch_csnln import CrossScaleAttention
+from models.arch_CSNLA.arch_csnln import CrossScaleAttention
 
-
-################################ CiaoSR_Local ##################################
 @register('mcassr')
 class MCASSR(nn.Module):
     """
@@ -152,7 +146,7 @@ class MCASSR(nn.Module):
             result (Tensor): (part of) output.
         """
         res_features = []
-        for feature in self.feats: #TODO 遍历的目的？
+        for feature in self.feats: 
             B, C, H, W = feature.shape  # [16, 64, 48, 48]
 
             #BUG 特征展开与非局部特征增强是递进判断的
