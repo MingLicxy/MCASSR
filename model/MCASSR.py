@@ -13,8 +13,8 @@ from models.arch_ciaosr.arch_csnln import CrossScaleAttention
 
 
 ################################ CiaoSR_Local ##################################
-@register('ciaosr_liif')
-class CiaoSR_LIIF(nn.Module):
+@register('mcassr')
+class MCASSR(nn.Module):
     """
     The subclasses should define `generator` with `encoder` and `imnet`,
         and overwrite the function `gen_feature`.
@@ -174,7 +174,6 @@ class CiaoSR_LIIF(nn.Module):
                 
 
             feat_coord = self.feat_coord # LR对应坐标
-            ###################################TODO 有待改进 TODO####################################
             # Q: 最邻近采样查询点特征
             #TODO 1，采用双线性插值
             #query = F.grid_sample(feat_q, coord.flip(-1).unsqueeze(1), mode='bilinear',
