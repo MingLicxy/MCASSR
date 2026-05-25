@@ -1,0 +1,63 @@
+train_dataset:
+  dataset:
+    name: image-folder
+    args:
+      root_path: /home/caoxinyu/Arbitrary-scale/data/train_data/IR700_clean
+      repeat: 20
+      cache: in_memory
+  wrapper:
+    name: ope-sample-train-2
+    args:
+      inp_size: 48
+      scale_min: 1  #4
+      scale_max: 4
+      augment: true
+      norm: true # 归一化
+      sample_q: 2304
+  batch_size: 16
+
+val_dataset:
+  dataset:
+    name: image-folder
+    args:
+      root_path: /home/caoxinyu/Arbitrary-scale/data/train_data/IR700_clean
+      first_k: 10
+      repeat: 160       #80
+      cache: in_memory
+  wrapper:
+    name: ope-patch-eval
+    args:
+      inp_size: 48
+      scale_factor: 4
+      augment: true
+      norm: true
+  batch_size: 16
+
+model:
+  name: OPE-net
+  args:
+    max_freq: 3 # 决定OPE长度
+    srnet_spec:
+      name: edsr-baseline
+      args:
+        n_feats: 147
+        no_upsampling: true # 无上采样
+
+optimizer:
+  name: adam
+  args:
+    lr: 0.0001 #1.e-4
+epoch_max: 1000
+multi_step_lr:
+  # milestones: [200, 400, 600, 800]
+  milestones:
+  - 200
+  - 400
+  - 600
+  - 800
+  gamma: 0.5
+epoch_val: 1
+epoch_save: 100
+
+resume: ~
+pre_train: ~

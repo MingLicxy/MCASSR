@@ -1,0 +1,64 @@
+
+# echo '#######################[01]#######################' &&
+# python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/DLS-NUC-100_others/bicubic/X8/LR/002.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/002.png --gpu $1 &&
+# echo '#######################[02]#######################' &&
+# python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/DLS-NUC-100_others/bicubic/X8/LR/009.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/009.png --gpu $1 &&
+# echo '#######################[03]#######################' &&
+# python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/DLS-NUC-100_others/bicubic/X8/LR/010.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/010.png --gpu $1 &&
+# echo '#######################[04]#######################' &&
+# python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/DLS-NUC-100_others/bicubic/X8/LR/013.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/013.png --gpu $1 &&
+# echo '#######################[05]#######################' &&
+# python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/DLS-NUC-100_others/bicubic/X8/LR/015.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/015.png --gpu $1 &&
+# echo '#######################[06]#######################' &&
+# python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/DLS-NUC-100_others/bicubic/X8/LR/029.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/029.png --gpu $1 &&
+# echo '#######################[07]#######################' &&
+# python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/DLS-NUC-100_others/bicubic/X8/LR/031.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/031.png --gpu $1 &&
+# echo '#######################[08]#######################' &&
+# python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/DLS-NUC-100_others/bicubic/X8/LR/039.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/039.png --gpu $1 &&
+# echo '#######################[09]#######################' &&
+# python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/DLS-NUC-100_others/bicubic/X8/LR/042.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/042.png --gpu $1 &&
+# echo '#######################[10]#######################' &&
+# python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/DLS-NUC-100_others/bicubic/X8/LR/043.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/043.png --gpu $1 &&
+# echo '#######################[11]#######################' &&
+# python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/DLS-NUC-100_others/bicubic/X8/LR/045.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/045.png --gpu $1 &&
+# echo '#######################[12]#######################' &&
+# python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/DLS-NUC-100_others/bicubic/X8/LR/046.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/046.png --gpu $1 &&
+# echo '#######################[13]#######################' &&
+# python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/DLS-NUC-100_others/bicubic/X8/LR/047.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/047.png --gpu $1 &&
+# echo '#######################[14]#######################' &&
+# python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/DLS-NUC-100_others/bicubic/X8/LR/055.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/055.png --gpu $1 &&
+# echo '#######################[15]#######################' &&
+# python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/DLS-NUC-100_others/bicubic/X8/LR/056.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/056.png --gpu $1 &&
+# echo '#######################[16]#######################' &&
+# python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/DLS-NUC-100_others/bicubic/X8/LR/057.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/057.png --gpu $1 &&
+# echo '#######################[17]#######################' &&
+# python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/DLS-NUC-100_others/bicubic/X8/LR/067.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/067.png --gpu $1 &&
+# echo '#######################[18]#######################' &&
+# python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/DLS-NUC-100_others/bicubic/X8/LR/074.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/074.png --gpu $1 &&
+# echo '#######################[19]#######################' &&
+# python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/DLS-NUC-100_others/bicubic/X8/LR/080.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/080.png --gpu $1 &&
+# echo '#######################[20]#######################' &&
+# python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/DLS-NUC-100_others/bicubic/X8/LR/093.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/093.png --gpu $1 &&
+# echo '#######################[21]#######################' &&
+# python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/DLS-NUC-100_others/bicubic/X8/LR/095.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/095.png --gpu $1 &&
+# echo '#######################[22]#######################' &&
+# python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/DLS-NUC-100_others/bicubic/X8/LR/096.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/096.png --gpu $1 &&
+# true
+
+
+
+echo '#######################[01]#######################' &&
+python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/LR/002.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/002.png --gpu $1 &&
+echo '#######################[02]#######################' &&
+python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/LR/039.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/039.png --gpu $1 &&
+echo '#######################[03]#######################' &&
+python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/LR/041.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/041.png --gpu $1 &&
+echo '#######################[04]#######################' &&
+python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/LR/067.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/067.png --gpu $1 &&
+echo '#######################[05]#######################' &&
+python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/LR/079.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/079.png --gpu $1 &&
+echo '#######################[06]#######################' &&
+python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/LR/095.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/095.png --gpu $1 &&
+echo '#######################[07]#######################' &&
+python /home/caoxinyu/Arbitrary-scale/liif-main/demo.py --input /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/LR/078.png --model /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mamba_cnn_1-ciaosr_liif_full_4444/epoch-best.pth --resolution 480,640 --output /home/caoxinyu/Arbitrary-scale/liif-main/demo/others/bicubic/X7.3/SR/078.png --gpu $1 &&
+true

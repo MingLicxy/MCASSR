@@ -1,0 +1,69 @@
+train_dataset:
+  dataset:
+    name: image-folder
+    args:
+      root_path: /home/caoxinyu/Arbitrary-scale/data/train_data/IR700/GT
+      repeat: 20
+      cache: in_memory
+  wrapper:
+    name: sr-implicit-downsampled
+    args:
+      inp_size: 48    #64
+      scale_min: 1
+      scale_max: 4
+      augment: true
+      sample_q: 2304       #4096
+  batch_size: 16
+
+val_dataset:
+  dataset:
+    name: image-folder
+    args:
+      root_path: /home/caoxinyu/Arbitrary-scale/data/train_data/IR700/GT
+      first_k: 10
+      repeat: 160
+      cache: in_memory
+  wrapper:
+    name: sr-implicit-downsampled
+    args:
+      inp_size: 48      #64
+      scale_max: 4
+      sample_q: 2304         #4096
+  batch_size: 16
+
+data_norm:
+  inp: {sub: [0.5], div: [0.5]}
+  gt: {sub: [0.5], div: [0.5]}
+
+# 网络模型
+model: # 模型主体
+  name: itnsr
+  args:
+    feat_unfold: True
+    local_ensemble: True
+    scale_token: True
+    encoder_spec: # 编码器
+      name: mambair
+      args:
+        no_upsampling: true  # 有关SwinIR只设置no_upsampling
+    imnet_spec:
+      name: mlp
+      args:
+        out_dim: 3
+        hidden_list: [256, 256, 256, 256]
+        act: 'gelu'
+
+optimizer:
+  name: adam
+  args:
+    lr: 1.e-4
+epoch_max: 1000         #1200
+multi_step_lr:
+  milestones: [200, 400, 600, 800]    #[200, 400, 600, 800, 1000]
+  gamma: 0.5
+
+epoch_val: 1   
+epoch_save: 100     #50
+
+resume: /home/caoxinyu/Arbitrary-scale/liif-main/save/_train_mambair-itnsr copy/epoch-last.pth
+pre_train: ~

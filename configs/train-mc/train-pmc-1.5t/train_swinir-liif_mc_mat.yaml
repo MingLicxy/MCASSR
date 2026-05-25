@@ -1,0 +1,83 @@
+# 训练集
+train_dataset:
+  dataset:
+    name: paired-image-folders
+    args:
+      root_path_1: /home/caoxinyu/Arbitrary-scale/data/PMC/2D_mat/train/1.5T/T2 # PD辅助T2
+      root_path_2: /home/caoxinyu/Arbitrary-scale/data/PMC/2D_mat/train/1.5T/PD
+      repeat: 10      # 20 # 重复使用训练数据
+      cache: mat # 表示将数据集预先加载到内存中（cache:bin代表首次创建二进制文件，cache:none代表直接加载）
+
+  wrapper: # 训练数据处理
+    name: mc-sr-implicit-downsampled-dual
+    args:
+      inp_size: 48 # 输入图像尺寸
+      scale_min: 1 # 最小放大倍数
+      scale_max: 4 # 最大放大倍数
+      augment: true # 数据增强
+      sample_q: 2304 # 48x48=2304个像素中心
+  batch_size: 16
+
+# 决定如何在训练阶段计算指标
+eval_type: kspace
+eval_bsize: ~    # eval_bsize与val_dataset中的batch_size不同
+
+# 验证集（测试集设置在test文件夹）
+val_dataset:
+  dataset:
+    name: paired-image-folders
+    args:
+      root_path_1: /home/caoxinyu/Arbitrary-scale/data/PMC/2D_mat/valid/1.5T/T2
+      root_path_2: /home/caoxinyu/Arbitrary-scale/data/PMC/2D_mat/valid/1.5T/PD
+      first_k: 10 # 仅使用前k张验证图像
+      repeat: 160
+      cache: mat
+
+  wrapper: # 验证数据处理（与训练数据相同的处理方式）
+    name: mc-sr-implicit-downsampled-dual
+    args:
+      inp_size: 48
+      scale_min: 1
+      scale_max: 4
+      sample_q: 2304
+  batch_size: 16
+
+# 数据归一化（有利于模型收敛与泛化）
+data_norm:
+  inp: {sub: [0.5], div: [0.5]} # [0,1]->[-0.5,0.5]->[-1,1]
+  ref: {sub: [0.5], div: [0.5]} # 区别于普通ASSR
+  gt: {sub: [0.5], div: [0.5]}
+
+# 网络模型
+model:
+  name: liif_mc
+  args:
+    encoder_spec: # 编码器
+      name: swinir_ref      # 输入维度为：cat(inp,ref)=2+2=4
+      args:
+        no_upsampling: true # 无上采样
+    #decoder_spec: # 解码器
+    imnet_spec: # 解码器
+      name: mlp           #mlp
+      args:
+        out_dim: 2 # 输出实部与虚部
+        hidden_list: [256, 256, 256, 256]
+
+# 优化器
+optimizer:
+  name: adam
+  args:
+    lr: 1.e-4
+
+
+epoch_max: 1000
+multi_step_lr:
+  milestones: [200, 400, 600, 800]
+  gamma: 0.5 # 学习率衰减因子
+
+epoch_val: 1 # 验证周期
+epoch_save: 100 # 模型保存周期
+
+resume: ~
+pre_train: ~
+

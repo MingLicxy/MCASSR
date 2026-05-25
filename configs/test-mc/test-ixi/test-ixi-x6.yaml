@@ -1,0 +1,20 @@
+# X6
+test_dataset:
+  dataset:
+    name: paired-image-folders
+    args:
+      root_path_1: /home/caoxinyu/Arbitrary-scale/data/IXI/2D/test/T2
+      root_path_2: /home/caoxinyu/Arbitrary-scale/data/IXI/2D/test/PD
+  wrapper:
+    name: mc-sr-implicit-downsampled
+    args:
+      #inp_size: 64 # 48 测试时也裁剪不就避免了尺度问题
+      scale_min: 6
+  batch_size: 1
+eval_type: metrics-6 
+eval_bsize: 30000
+
+data_norm:
+  inp: {sub: [0.5], div: [0.5]}
+  ref: {sub: [0.5], div: [0.5]} # 区别于普通ASSR
+  gt: {sub: [0.5], div: [0.5]}

@@ -1,0 +1,74 @@
+# 训练集
+train_dataset:
+  dataset:
+    name: image-folder
+    args:
+      root_path: /home/caoxinyu/Arbitrary-scale/data/train_data/IR700_clean
+      repeat: 20 # 重复使用训练数据
+      cache: in_memory # 表示将数据集预先加载到内存中（cache:bin代表首次创建二进制文件，cache:none代表直接加载）
+
+  wrapper: # 训练数据处理
+    name: sr-implicit-downsampled
+    args:
+      inp_size: 48 # 输入图像尺寸
+      scale_min: 1 # 最小放大倍数
+      scale_max: 4 # 最大放大倍数
+      augment: true # 数据增强
+      sample_q: 2304 # 48x48=2304个像素中心
+  batch_size: 16
+
+# 验证集（测试集设置在test文件夹）
+val_dataset:
+  dataset:
+    name: image-folder
+    args:
+      root_path: /home/caoxinyu/Arbitrary-scale/data/train_data/IR700_clean
+      first_k: 10 # 仅使用前k张验证图像
+      repeat: 160
+      cache: in_memory
+
+  wrapper: # 验证数据处理（与训练数据相同的处理方式）
+    name: sr-implicit-downsampled
+    args:
+      inp_size: 48
+      scale_max: 4
+      sample_q: 2304
+  batch_size: 16           #16
+
+# 数据归一化（有利于模型收敛与泛化）
+data_norm:
+  inp: {sub: [0.5], div: [0.5]} # [0,1]->[-0.5,0.5]->[-1,1]
+  gt: {sub: [0.5], div: [0.5]}
+
+# 网络模型
+model:
+  name: liif
+  args:
+    encoder_spec: # 编码器
+      name: edsr-baseline
+      args:
+        no_upsampling: true # 无上采样
+    imnet_spec: # 解码器
+      name: resfastkanmlp_1           #mlp
+      args:
+        out_dim: 3
+        hidden_list: [256, 256]     #[256, 256, 256, 256]
+
+# 优化器
+optimizer:
+  name: adam
+  args:
+    lr: 1.e-4
+
+
+epoch_max: 1000
+multi_step_lr:
+  milestones: [200, 400, 600, 800]
+  gamma: 0.5 # 学习率衰减因子
+
+epoch_val: 1 # 验证周期
+epoch_save: 100 # 模型保存周期
+
+resume: ~
+pre_train: ~
+

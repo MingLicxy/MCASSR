@@ -1,0 +1,11 @@
+test_dataset:
+  dataset:
+    name: paired-image-folders
+    args:
+      root_path_1: /home/caoxinyu/Arbitrary-scale/data/test_data/results-A/bicubic/X4/LR
+      root_path_2: /home/caoxinyu/Arbitrary-scale/data/test_data/results-A/bicubic/X4/HR
+  wrapper:
+    name: sr-cut-paired
+    args: {}
+  batch_size: 1
+eval_type: div2k-4

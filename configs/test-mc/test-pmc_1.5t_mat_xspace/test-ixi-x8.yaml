@@ -1,0 +1,20 @@
+test_dataset:
+  dataset:
+    name: paired-image-folders
+    args:
+      root_path_1: /home/caoxinyu/Arbitrary-scale/data/PMC/2D_mat/test/1.5T/T2
+      root_path_2: /home/caoxinyu/Arbitrary-scale/data/PMC/2D_mat/test/1.5T/PD
+      cache: mat
+  wrapper:
+    name: mc-sr-implicit-downsampled-dual
+    args:
+      #inp_size: 64 # 48 测试时也裁剪不就避免了尺度问题
+      scale_min: 8
+  batch_size: 1
+eval_type: kspace #metrics-8
+eval_bsize: 30000
+
+data_norm:
+  inp: {sub: [0.5], div: [0.5]}
+  ref: {sub: [0.5], div: [0.5]} # 区别于普通ASSR
+  gt: {sub: [0.5], div: [0.5]}

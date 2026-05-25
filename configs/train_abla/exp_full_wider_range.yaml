@@ -1,0 +1,82 @@
+train_dataset:
+  dataset:
+    name: image-folder
+    args:
+      root_path: /home/caoxinyu/Arbitrary-scale/data/train_data/IR700/GT
+      repeat: 20
+      cache: in_memory
+  wrapper:
+    name: sr-implicit-downsampled
+    args:
+      inp_size: 48    #64
+      scale_min: 1
+      scale_max: 4
+      augment: true
+      sample_q: 2304       #4096
+  batch_size: 16
+
+val_dataset:
+  dataset:
+    name: image-folder
+    args:
+      root_path: /home/caoxinyu/Arbitrary-scale/data/train_data/IR700/GT
+      first_k: 10
+      repeat: 160
+      cache: in_memory
+  wrapper:
+    name: sr-implicit-downsampled
+    args:
+      inp_size: 48      #64
+      scale_max: 4
+      sample_q: 2304         #4096
+  batch_size: 16
+
+data_norm:
+  inp: {sub: [0.5], div: [0.5]}
+  gt: {sub: [0.5], div: [0.5]}
+
+model:
+  name: ciaosr_liif
+  args:
+    encoder:
+      name: mamba_cnn_1                 #edsr-baseline
+      args:
+        no_upsampling: true
+    imnet_q:     # 最终的解码器设计复杂一点更好
+      name: resmlp
+      args:
+        out_dim: 3
+        hidden_list: [ 256, 256 ] # 一共五层
+        block_type: 'linear_start'  # ['relu_start', 'linear_start']
+    imnet_k:
+      name: mlp
+      args:
+        out_dim: 256
+        hidden_list: [ 256 ]
+    imnet_v:
+      name: mlp
+      args:
+        out_dim: 256
+        hidden_list: [ 256 ]
+
+    local_size: 3      # 增加特征聚合范围导致模型大小暴增
+    feat_unfold: true
+    local_ensemble: true
+    non_local_attn: true
+    multi_scale: [2]   #[1,2]  [1,2,3] [2,3,4]
+    softmax_scale: 1
+
+optimizer:
+  name: adam
+  args:
+    lr: 1.e-4
+epoch_max: 1000         #1200
+multi_step_lr:
+  milestones: [200, 400, 600, 800]    #[200, 400, 600, 800, 1000]
+  gamma: 0.5
+
+epoch_val: 1   
+epoch_save: 100     #50
+
+resume: ~
+pre_train: ~

@@ -1,0 +1,69 @@
+train_dataset:
+  dataset:
+    name: paired-image-folders
+    args:
+      root_path_1: /home/caoxinyu/Arbitrary-scale/data/BraTS/2D/train/T2 # PD辅助T2
+      root_path_2: /home/caoxinyu/Arbitrary-scale/data/BraTS/2D/train/T1
+      repeat: 10 # 20
+      cache: in_memory # ['none'(不缓存), 'bin'(二进制), 'in_memory'(RGB), in_memory_L'(针对单通道灰度图), 'mat'(.mat存储numpy数组)]
+  wrapper:
+    name: mc-sr-implicit-downsampled
+    args:
+      inp_size: 48 # 64
+      scale_min: 1
+      scale_max: 4
+      augment: true
+      sample_q: 2304 # 4096
+  batch_size: 16 # 8
+
+val_dataset:
+  dataset:
+    name: paired-image-folders
+    args:
+      root_path_1: /home/caoxinyu/Arbitrary-scale/data/BraTS/2D/valid/T2
+      root_path_2: /home/caoxinyu/Arbitrary-scale/data/BraTS/2D/valid/T1
+      first_k: 10
+      repeat: 160
+      cache: in_memory
+  wrapper:
+    name: mc-sr-implicit-downsampled
+    args:
+      inp_size: 48 # 64
+      scale_min: 1
+      scale_max: 4
+      sample_q: 2304 # 4096
+  batch_size: 16 #8
+
+data_norm:
+  inp: {sub: [0.5], div: [0.5]}
+  ref: {sub: [0.5], div: [0.5]} # 区别于普通ASSR
+  gt: {sub: [0.5], div: [0.5]}
+
+# 模型相关参数
+model:
+  name: mcassr
+  args:
+    encoder_spec:
+      name: rct
+      args:
+        no_upsampling: true
+    imnet_spec:
+      name: mlp
+      args:
+        out_dim: 3
+        hidden_list: [256, 256, 256, 256] # [256, 256, 256]
+    #hidden_dim: 256 # 这里设置谁的通道维
+
+optimizer:
+  name: adam
+  args:
+    lr: 1.e-4 # 2.e-4
+epoch_max: 1000
+multi_step_lr:
+  milestones: [200, 400, 600, 800] # [500, 800, 900, 950]
+  gamma: 0.5
+
+epoch_val: 1
+epoch_save: 100
+
+resume: ~
